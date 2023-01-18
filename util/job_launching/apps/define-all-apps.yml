@@ -9,6 +9,17 @@
 #       ...
 # If you have a bunch of random benchmarks in random places, then a "suite" can be just one benchmark
 
+cifar-10:
+  exec_dir: "/home/yang/Desktop/cifar-10"
+  data_dirs: "/home/yang/Desktop/cifar-10"
+  execs: 
+    - trace.sh:
+      - args: data_dirs/base.pt 0
+    - trace.sh:
+      - args: data_dirs/base.pt 1
+    - trace.sh:
+      - args: data_dirs/base.pt 2
+
 # Rodinia 2.0 implemented with a pass/fail functional test
 rodinia_2.0-ft:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
