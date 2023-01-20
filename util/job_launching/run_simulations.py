@@ -230,6 +230,9 @@ class ConfigurationSpec:
     
     def read_cudnn_trace(self, this_run_dir):
         
+        if "COMPRESSED" not in os.environ or os.environ["COMPRESSED"] != "true":
+            return ""
+        
         conv_regex = "I!.*function cudnnConvolutionForward\(\) called"
         batchnorm_regex = "I!.*function cudnnBatchNormalizationForwardTrainingEx\(\) called"
         len_regex = "Desc.*\n.*\n.*nbDims.*val=([0-9]+);\n.*dimA.*val=\[([0-9]*),.*\n.*strideA.*val=\[([0-9]+),"
