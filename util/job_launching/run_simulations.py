@@ -42,6 +42,7 @@ import glob
 import datetime
 import yaml
 import common
+import functools
 
 this_directory = os.path.dirname(os.path.realpath(__file__)) + "/"
 # This function will pull the SO name out of the shared object,
@@ -180,8 +181,8 @@ class ConfigurationSpec:
                                    glob.glob(os.path.join(full_data_dir, "*.h")) +\
                                    glob.glob(os.path.dirname(self.config_file) + "/*.icnt") +\
                                    glob.glob(os.path.dirname(self.config_file) + "/*.csv") +\
-                                   glob.glob(os.path.dirname(self.config_file) + "/*.xml")
-
+                                   glob.glob(os.path.dirname(self.config_file) + "/*.xml") + \
+                                   glob.glob(os.path.join(options.trace_dir, appargs_subdir, "cudnn-trace.log"))
         for file_to_cp in files_to_copy_to_run_dir:
             new_file = os.path.join(this_run_dir ,
                        os.path.basename(this_directory + file_to_cp))
@@ -226,6 +227,31 @@ class ConfigurationSpec:
             os.remove(all_data_link)
         if os.path.exists(os.path.join(this_directory, data_dir)):
             os.symlink(os.path.join(this_directory, data_dir), all_data_link)
+    
+    def read_cudnn_trace(self, this_run_dir):
+        
+        conv_regex = "I!.*function cudnnConvolutionForward\(\) called"
+        batchnorm_regex = "I!.*function cudnnBatchNormalizationForwardTrainingEx\(\) called"
+        len_regex = "Desc.*\n.*\n.*nbDims.*val=([0-9]+);\n.*dimA.*val=\[([0-9]*),.*\n.*strideA.*val=\[([0-9]+),"
+        addr_reg = "Data.*addr=(0x[0-9|a-f|A-F]+)"
+        
+        str2int = lambda l: [int(s, 16) for s in l]
+        prod_all = lambda l: [functools.reduce(lambda x, y: int(x) * int(y), t) for t in l]
+        
+        cudnn_trace_path = os.path.join(this_run_dir, "cudnn-trace.log")
+        if os.path.exists(cudnn_trace_path):
+            with open(cudnn_trace_path) as f:
+                text = f.read()
+                for e in text.split("\n\n"):
+                    if re.search(conv_regex, e) or re.search(batchnorm_regex, e):
+                        xaddr = str2int(re.findall("x" + addr_reg, e))[0]
+                        xlen = prod_all(re.findall("x" + len_regex, e))[0]
+                        yaddr = str2int(re.findall("y" + addr_reg, e))[0]
+                        ylen = prod_all(re.findall("y" + len_regex, e))[0]
+                        return f"{hex(xaddr)}:{hex(xaddr+xlen)},{hex(yaddr)}:{hex(yaddr+ylen)}"
+                assert(False)
+        else:
+            return f"*"
 
     # replaces all the "REAPLCE_*" strings in the .sim file
     def text_replace_torque_sim( self,full_run_dir,this_run_dir,benchmark, cuda_version, command_line_args,
@@ -286,7 +312,8 @@ class ConfigurationSpec:
                             "EXEC_NAME":exec_name,
                             "QUEUE_NAME":queue_name,
                             "COMMAND_LINE":txt_args,
-                            "MEM_USAGE": mem_usage
+                            "MEM_USAGE": mem_usage,
+                            "ALWAYS_HIT_IN_L1": self.read_cudnn_trace(this_run_dir)
                             }
         torque_text = open(this_directory + job_template).read().strip()
         for entry in replacement_dict:
