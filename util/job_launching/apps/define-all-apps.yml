@@ -14,11 +14,251 @@ cifar-10:
   data_dirs: "/home/yang/Desktop/cifar-10"
   execs: 
     - trace.sh:
-      - args: data_dirs/base.pt 0
+      - args: data_dirs/base.pt conv 0
     - trace.sh:
-      - args: data_dirs/base.pt 1
+      - args: data_dirs/base.pt conv 1
     - trace.sh:
-      - args: data_dirs/base.pt 2
+      - args: data_dirs/base.pt conv 2
+    - trace.sh:
+      - args: data_dirs/base.pt conv 3
+    - trace.sh:
+      - args: data_dirs/base.pt conv 4
+    - trace.sh:
+      - args: data_dirs/base.pt conv 5
+    - trace.sh:
+      - args: data_dirs/base.pt conv 6
+    - trace.sh:
+      - args: data_dirs/base.pt conv 7
+    - trace.sh:
+      - args: data_dirs/base.pt conv 8
+    - trace.sh:
+      - args: data_dirs/base.pt conv 9
+    - trace.sh:
+      - args: data_dirs/base.pt conv 10
+    - trace.sh:
+      - args: data_dirs/base.pt conv 11
+    - trace.sh:
+      - args: data_dirs/base.pt conv 12
+    - trace.sh:
+      - args: data_dirs/base.pt conv 13
+    - trace.sh:
+      - args: data_dirs/base.pt conv 14
+    - trace.sh:
+      - args: data_dirs/base.pt conv 15
+    - trace.sh:
+      - args: data_dirs/base.pt conv 16
+    - trace.sh:
+      - args: data_dirs/base.pt conv 17
+    - trace.sh:
+      - args: data_dirs/base.pt conv 18
+    - trace.sh:
+      - args: data_dirs/base.pt conv 19
+    - trace.sh:
+      - args: data_dirs/base.pt conv 20
+    - trace.sh:
+      - args: data_dirs/base.pt conv 21
+    - trace.sh:
+      - args: data_dirs/base.pt conv 22
+    - trace.sh:
+      - args: data_dirs/base.pt conv 23
+    - trace.sh:
+      - args: data_dirs/base.pt conv 24
+    - trace.sh:
+      - args: data_dirs/base.pt conv 25
+    - trace.sh:
+      - args: data_dirs/base.pt conv 26
+    - trace.sh:
+      - args: data_dirs/base.pt conv 27
+    - trace.sh:
+      - args: data_dirs/base.pt conv 28
+    - trace.sh:
+      - args: data_dirs/base.pt conv 29
+    - trace.sh:
+      - args: data_dirs/base.pt conv 30
+    - trace.sh:
+      - args: data_dirs/base.pt conv 31
+    - trace.sh:
+      - args: data_dirs/base.pt conv 32
+    - trace.sh:
+      - args: data_dirs/base.pt conv 33
+    - trace.sh:
+      - args: data_dirs/base.pt conv 34
+    - trace.sh:
+      - args: data_dirs/base.pt conv 35
+    - trace.sh:
+      - args: data_dirs/base.pt conv 36
+    - trace.sh:
+      - args: data_dirs/base.pt conv 37
+    - trace.sh:
+      - args: data_dirs/base.pt conv 38
+    - trace.sh:
+      - args: data_dirs/base.pt conv 39
+    - trace.sh:
+      - args: data_dirs/base.pt conv 40
+    - trace.sh:
+      - args: data_dirs/base.pt conv 41
+    - trace.sh:
+      - args: data_dirs/base.pt conv 42
+    - trace.sh:
+      - args: data_dirs/base.pt conv 43
+    - trace.sh:
+      - args: data_dirs/base.pt conv 44
+    - trace.sh:
+      - args: data_dirs/base.pt conv 45
+    - trace.sh:
+      - args: data_dirs/base.pt conv 46
+    - trace.sh:
+      - args: data_dirs/base.pt conv 47
+    - trace.sh:
+      - args: data_dirs/base.pt conv 48
+    - trace.sh:
+      - args: data_dirs/base.pt conv 49
+    - trace.sh:
+      - args: data_dirs/base.pt conv 50
+    - trace.sh:
+      - args: data_dirs/base.pt conv 51
+    - trace.sh:
+      - args: data_dirs/base.pt conv 52
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 0
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 1
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 2
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 3
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 4
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 5
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 6
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 7
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 8
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 9
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 10
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 11
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 12
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 13
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 14
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 15
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 16
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 17
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 18
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 19
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 20
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 21
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 22
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 23
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 24
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 25
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 26
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 27
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 28
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 29
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 30
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 31
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 32
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 33
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 34
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 35
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 36
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 37
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 38
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 39
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 40
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 41
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 42
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 43
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 44
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 45
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 46
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 47
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 48
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 49
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 50
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 51
+    - trace.sh:
+      - args: data_dirs/base.pt batchnorm 52
+    - trace.sh:
+      - args: data_dirs/base.pt relu 0
+    - trace.sh:
+      - args: data_dirs/base.pt relu 1
+    - trace.sh:
+      - args: data_dirs/base.pt relu 2
+    - trace.sh:
+      - args: data_dirs/base.pt relu 3
+    - trace.sh:
+      - args: data_dirs/base.pt relu 4
+    - trace.sh:
+      - args: data_dirs/base.pt relu 5
+    - trace.sh:
+      - args: data_dirs/base.pt relu 6
+    - trace.sh:
+      - args: data_dirs/base.pt relu 7
+    - trace.sh:
+      - args: data_dirs/base.pt relu 8
+    - trace.sh:
+      - args: data_dirs/base.pt relu 9
+    - trace.sh:
+      - args: data_dirs/base.pt relu 10
+    - trace.sh:
+      - args: data_dirs/base.pt relu 11
+    - trace.sh:
+      - args: data_dirs/base.pt relu 12
+    - trace.sh:
+      - args: data_dirs/base.pt relu 13
+    - trace.sh:
+      - args: data_dirs/base.pt relu 14
+    - trace.sh:
+      - args: data_dirs/base.pt relu 15
+    - trace.sh:
+      - args: data_dirs/base.pt relu 16
 
 # Rodinia 2.0 implemented with a pass/fail functional test
 rodinia_2.0-ft:
