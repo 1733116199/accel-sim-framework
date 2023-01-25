@@ -4,7 +4,7 @@ import functools
 
 def read_stats(filename):
     delim = "----------------------------------------------------------------------------------------------------,"
-    stats = ["L1D_total_cache_accesses", "gpu_tot_sim_cycle", "L1D_total_cache_misses"]
+    stats = ["L1D_total_cache_accesses", "gpu_tot_sim_cycle", "L1D_total_cache_misses", "gpu_tot_sim_insn"]
     types = ["conv", "batchnorm", "relu"]
     prefix = "trace\.sh\/data\_dirs\_base\_pt\_"
     suffix = "\_.*\-\-final_kernel,(.*)"
