@@ -9,6 +9,17 @@
 #       ...
 # If you have a bunch of random benchmarks in random places, then a "suite" can be just one benchmark
 
+networks:
+  exec_dir: "/home/yang/Desktop/cifar-10"
+  data_dirs: "/home/yang/Desktop/cifar-10"
+  execs: 
+    - trace_resnet50.sh:
+      - args: "1"
+    - trace_mobilenetv2.sh:
+      - args: "1"
+    # - trace_bert.sh:
+    #   - args: "1"
+
 my_apps:
   exec_dir: "/home/yang/Desktop/accel-sim-framework/myapps"
   data_dirs: "/home/yang/Desktop/accel-sim-framework/myapps"

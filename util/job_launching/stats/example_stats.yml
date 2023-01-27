@@ -11,6 +11,8 @@ collect_aggregate:
     - 'gpu_tot_sim_insn\s*=\s*(.*)'
     - 'gpgpu_simulation_time\s*=.*\(([0-9]+) sec\).*'
     - 'gpu_tot_sim_cycle\s*=\s*(.*)'
+    - 'total_fp_count\s*=\s*(.*)'
+    - 'total_global_ldst_size\s*=\s*(.*)'
     - '\s+L1D_total_cache_accesses\s+=\s*(.*)'
     - '\s+L1D_total_cache_misses\s+=\s*(.*)'
     - '\s+L2_cache_stats_breakdown\[GLOBAL_ACC_R\]\[HIT\]\s*=\s*(.*)'
