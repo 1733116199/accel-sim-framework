@@ -15,8 +15,8 @@ networks:
   execs: 
     - trace_resnet50.sh:
       - args: "1"
-    - trace_mobilenetv2.sh:
-      - args: "1"
+    # - trace_mobilenetv2.sh:
+    #   - args: "1"
     # - trace_bert.sh:
     #   - args: "1"
 
