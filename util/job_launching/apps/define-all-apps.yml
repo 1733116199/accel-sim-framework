@@ -25,8 +25,8 @@ networks:
       - args: "16"
     - trace_resnet50.sh:
       - args: "32"
-    # - trace_resnet50.sh:
-    #   - args: "64"
+    - trace_resnet50.sh:
+      - args: "64"
 
 my_apps:
   exec_dir: "/home/yang/Desktop/accel-sim-framework/myapps"

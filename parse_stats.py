@@ -12,7 +12,7 @@ STATS_FIELD = [CYCLE, FP_COUNT, BYTE_COUNT]
 
 def read_stats(filename):
     delim = "----------------------------------------------------------------------------------------------------,"
-    regex = "trace\_(.*)\.sh\/.*\-\-final_kernel,(.*)"
+    regex = "trace\_(.*)\.sh\/(.*)\-\-final_kernel,(.*)"
     result = {}
     with open(filename) as f:
         text = f.read()
@@ -21,9 +21,10 @@ def read_stats(filename):
                 if s in chunk:
                     findResult = re.findall(regex, chunk)
                     for r in findResult:
-                        if r[0] not in result:
-                            result[r[0]] = {}
-                        result[r[0]][s] = int(r[1])
+                        field = r[0] + "/" + r[1]
+                        if field not in result:
+                            result[field] = {}
+                        result[field][s] = int(r[2])
     return result
 
 def calc_gflops_per_sec(stats):
@@ -43,12 +44,9 @@ def frange(start, stop, step=1.0):
     while f < stop:
         f += step
         yield f
-         
-if __name__ == '__main__':
-    assert(len(sys.argv) <= 2)
-    filename = sys.argv[1]
-    
-    # read and process stats
+
+def roofline(filename):
+        # read and process stats
     stats = read_stats(filename)
     calc_gflops_per_sec(stats)
     calc_flops_per_byte(stats)
@@ -82,6 +80,26 @@ if __name__ == '__main__':
     
     # save figure
     plt.savefig('roofline.png')
+
+def speedup(before, after):
+    sb = read_stats(before)
+    sa = read_stats(after)
+    for k in sb:
+        assert(k in sa)
+        improvement = (sb[k][CYCLE] / sa[k][CYCLE] - 1) * 100
+        print(k, round(improvement, 2))
+    pass
+
+if __name__ == '__main__':
+    assert(len(sys.argv) >= 3)
+    operation = sys.argv[1]
+    if operation == "roofline":
+        roofline(sys.argv[2])
+    else:
+        assert(len(sys.argv) >= 4)
+        speedup(sys.argv[2], sys.argv[3])
+    
+
     
     
     
