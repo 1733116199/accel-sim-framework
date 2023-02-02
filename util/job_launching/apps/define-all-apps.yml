@@ -28,6 +28,17 @@ networks:
     - trace_resnet50.sh:
       - args: "64"
 
+roofline: 
+  exec_dir: "/home/yang/Desktop/cifar-10/roofline"
+  data_dirs: "/home/yang/Desktop/cifar-10/roofline"
+  execs: 
+    - trace_resnet50.sh:
+      - args: "roofline"
+    - trace_bert.sh:
+      - args: "roofline"
+    - trace_mobilenetv2.sh:
+      - args: "roofline"
+
 my_apps:
   exec_dir: "/home/yang/Desktop/accel-sim-framework/myapps"
   data_dirs: "/home/yang/Desktop/accel-sim-framework/myapps"
