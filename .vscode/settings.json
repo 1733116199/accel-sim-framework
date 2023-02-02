@@ -43,6 +43,9 @@
         "string": "cpp",
         "cwctype": "cpp",
         "system_error": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "valarray": "cpp"
     }
 }

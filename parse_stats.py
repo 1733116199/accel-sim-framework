@@ -7,7 +7,7 @@ GIGA = 10 ** 9
 FREQUENCY = 1.2 * GIGA
 CYCLE = "gpu_tot_sim_cycle"
 FP_COUNT = "total_fp_count"
-BYTE_COUNT = "total_global_ldst_size"
+BYTE_COUNT = "offchip_total_bytes"
 STATS_FIELD = [CYCLE, FP_COUNT, BYTE_COUNT]
 
 def read_stats(filename):
