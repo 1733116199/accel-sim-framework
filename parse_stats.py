@@ -71,7 +71,7 @@ def roofline(filename):
     fig = ax.scatter(x, y)
     ax.set_ylabel("Performance (FLOPs/second)")
     ax.set_xlabel("Arithmetic Intensity (FLOPs/byte)")
-    ax.set_title("Resnet50 First Conv with Different Batch Sizes on TITAN V")
+    ax.set_title("DNN Models on TITAN V")
     for i, l in enumerate(labels):
         ax.annotate(l, (x[i], y[i] - 500))
     
