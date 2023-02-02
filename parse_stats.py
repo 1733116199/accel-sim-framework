@@ -97,12 +97,12 @@ def speedup(before, after):
     sa = read_stats(after)
     calc_miss_rate(sb)
     calc_miss_rate(sa)
-    print("batch size,speedup,L1 miss rate (before),L1 miss rate (after)")
-    for k in sb:
+    print("workload,speedup(%),L1 miss rate (before %),L1 miss rate (after %)")
+    for k in sa:
         assert(k in sa)
         improvement = round((sb[k][CYCLE] / sa[k][CYCLE] - 1) * 100, 2)
-        l1_miss_before = round(sb[k]["l1_miss_rate"], 3)
-        l1_miss_after = round(sa[k]["l1_miss_rate"], 3)
+        l1_miss_before = round(sb[k]["l1_miss_rate"] * 100, 3)
+        l1_miss_after = round(sa[k]["l1_miss_rate"] * 100, 3)
         print(f"{k},{improvement},{l1_miss_before},{l1_miss_after}")
 
 if __name__ == '__main__':
