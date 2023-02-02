@@ -8,7 +8,9 @@ FREQUENCY = 1.2 * GIGA
 CYCLE = "gpu_tot_sim_cycle"
 FP_COUNT = "total_fp_count"
 BYTE_COUNT = "offchip_total_bytes"
-STATS_FIELD = [CYCLE, FP_COUNT, BYTE_COUNT]
+L1_ACCESSES = "L1D_total_cache_accesses"
+L1_MISSES = "L1D_total_cache_misses"
+STATS_FIELD = [CYCLE, FP_COUNT, BYTE_COUNT, L1_ACCESSES, L1_MISSES]
 
 def read_stats(filename):
     delim = "----------------------------------------------------------------------------------------------------,"
@@ -21,7 +23,7 @@ def read_stats(filename):
                 if s in chunk:
                     findResult = re.findall(regex, chunk)
                     for r in findResult:
-                        field = r[0] + "/" + r[1]
+                        field = r[1]
                         if field not in result:
                             result[field] = {}
                         result[field][s] = int(r[2])
@@ -64,7 +66,7 @@ def roofline(filename):
     fig = ax.scatter(x, y)
     ax.set_ylabel("Performance (FLOPs/second)")
     ax.set_xlabel("Arithmetic Intensity (FLOPs/byte)")
-    ax.set_title("DNN Models on TITAN V")
+    ax.set_title("Resnet50 First Conv with Different Batch Sizes on TITAN V")
     for i, l in enumerate(labels):
         ax.annotate(l, (x[i], y[i] - 500))
     
@@ -73,22 +75,30 @@ def roofline(filename):
         bw = 652.8
         max_flops = 14900
         xticks = [2.**i for i in range(-4, 10)]
-        x = list(frange(min(xticks), max(xticks), 0.01))
-        ax.plot(x, [min(bw*x, float(max_flops)) for x in x])
+        xticks = list(frange(min(xticks), max(xticks), 0.01))
+        ax.plot(xticks, [min(bw*xt, float(max_flops)) for xt in xticks])
     
-    # ax.set_xlim(0, 30)
+    ax.set_xlim(0, max(x) * 1.2)
     
     # save figure
     plt.savefig('roofline.png')
 
+def calc_miss_rate(stats):
+    for k in stats:
+        stats[k]["l1_miss_rate"] = stats[k][L1_MISSES] / stats[k][L1_ACCESSES]
+
 def speedup(before, after):
     sb = read_stats(before)
     sa = read_stats(after)
+    calc_miss_rate(sb)
+    calc_miss_rate(sa)
+    print("batch size,speedup,L1 miss rate (before),L1 miss rate (after)")
     for k in sb:
         assert(k in sa)
-        improvement = (sb[k][CYCLE] / sa[k][CYCLE] - 1) * 100
-        print(k, round(improvement, 2))
-    pass
+        improvement = round((sb[k][CYCLE] / sa[k][CYCLE] - 1) * 100, 2)
+        l1_miss_before = round(sb[k]["l1_miss_rate"], 3)
+        l1_miss_after = round(sa[k]["l1_miss_rate"], 3)
+        print(f"{k},{improvement},{l1_miss_before},{l1_miss_after}")
 
 if __name__ == '__main__':
     assert(len(sys.argv) >= 3)
