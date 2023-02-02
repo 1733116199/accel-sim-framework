@@ -12,7 +12,7 @@ L1_ACCESSES = "L1D_total_cache_accesses"
 L1_MISSES = "L1D_total_cache_misses"
 STATS_FIELD = [CYCLE, FP_COUNT, BYTE_COUNT, L1_ACCESSES, L1_MISSES]
 
-def read_stats(filename):
+def read_stats(filename, label=0):
     delim = "----------------------------------------------------------------------------------------------------,"
     regex = "trace\_(.*)\.sh\/(.*)\-\-final_kernel,(.*)"
     result = {}
@@ -23,7 +23,12 @@ def read_stats(filename):
                 if s in chunk:
                     findResult = re.findall(regex, chunk)
                     for r in findResult:
-                        field = r[1]
+                        if label == 0:
+                            field = r[0]
+                        elif label == 1:
+                            field = r[1]
+                        else:
+                            field = r[0] + "/" + r[1]
                         if field not in result:
                             result[field] = {}
                         result[field][s] = int(r[2])
