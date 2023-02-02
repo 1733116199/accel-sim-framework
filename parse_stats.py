@@ -70,13 +70,13 @@ def roofline(filename):
     
     if True:
         # plot roofline
-        bw = 651.3
+        bw = 652.8
         max_flops = 14900
         xticks = [2.**i for i in range(-4, 10)]
         x = list(frange(min(xticks), max(xticks), 0.01))
         ax.plot(x, [min(bw*x, float(max_flops)) for x in x])
     
-    ax.set_xlim(0, 30)
+    # ax.set_xlim(0, 30)
     
     # save figure
     plt.savefig('roofline.png')
