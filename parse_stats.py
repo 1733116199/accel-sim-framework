@@ -69,7 +69,7 @@ def roofline(filename):
     figure = plt.figure()
     ax = figure.add_subplot()
     fig = ax.scatter(x, y)
-    ax.set_ylabel("Performance (FLOPs/second)")
+    ax.set_ylabel("Performance (GFLOPs/second)")
     ax.set_xlabel("Arithmetic Intensity (FLOPs/byte)")
     ax.set_title("DNN Models on TITAN V")
     for i, l in enumerate(labels):
