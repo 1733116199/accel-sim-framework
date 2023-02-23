@@ -46,6 +46,8 @@
         "typeinfo": "cpp",
         "array": "cpp",
         "bitset": "cpp",
-        "valarray": "cpp"
-    }
+        "valarray": "cpp",
+        "cassert": "cpp"
+    },
+    "python.analysis.typeCheckingMode": "basic"
 }
