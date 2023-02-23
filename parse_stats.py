@@ -12,9 +12,9 @@ L1_ACCESSES = "L1D_total_cache_accesses"
 L1_MISSES = "L1D_total_cache_misses"
 STATS_FIELD = [CYCLE, FP_COUNT, BYTE_COUNT, L1_ACCESSES, L1_MISSES]
 
-def read_stats(filename, label=0):
+def read_stats(filename, label=0, regex=None):
     delim = "----------------------------------------------------------------------------------------------------,"
-    regex = "trace\_(.*)\.sh\/(.*)\-\-final_kernel,(.*)"
+    regex = "trace\_(.*)\.sh\/(.*)\-\-final_kernel,(.*)" if regex is None else regex
     result = {}
     with open(filename) as f:
         text = f.read()
@@ -110,9 +110,19 @@ if __name__ == '__main__':
     operation = sys.argv[1]
     if operation == "roofline":
         roofline(sys.argv[2])
-    else:
+    elif operation == "speedup":
         assert(len(sys.argv) >= 4)
         speedup(sys.argv[2], sys.argv[3])
+    else:
+        regex = "(measure\_max\_flops)\/(.*)\-\-final_kernel,(.*)"
+        option = 0
+        stats = read_stats(sys.argv[2], option, regex)
+        calc_gflops_per_sec(stats)
+        calc_flops_per_byte(stats)
+        calc_gb_per_sec(stats)
+        
+        # print stats
+        print(stats)
     
 
     

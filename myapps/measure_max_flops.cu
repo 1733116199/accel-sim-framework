@@ -11,7 +11,8 @@
 // works on one float
 #define N (NB * NT)
 // This controls the arithmetic intensity
-#define NUM_OPS 7000
+// #define NUM_OPS 7000
+#define NUM_OPS 700
 
 // Common macro for CUDA applications
 #define gpuErrorCheck(ans, abort)                    \
