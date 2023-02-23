@@ -45,6 +45,8 @@ my_apps:
   execs: 
     - vector_add:
       - args: "data_dirs"
+    - measure_max_flops:
+      - args: "data_dirs"
 
 cifar-10:
   exec_dir: "/home/yang/Desktop/cifar-10"

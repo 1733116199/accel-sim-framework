@@ -5,7 +5,8 @@
 // Each thread block is maxed out (1024)
 #define NT 1024
 // Number of thread blocks 2^20
-#define NB 1048756ull
+// #define NB 1048756ull
+#define NB 1048
 // The data is large enough such that each thread
 // works on one float
 #define N (NB * NT)
