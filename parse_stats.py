@@ -52,9 +52,9 @@ def frange(start, stop, step=1.0):
         f += step
         yield f
 
-def roofline(filename):
+def roofline(filename, label=0, regex=None):
         # read and process stats
-    stats = read_stats(filename)
+    stats = read_stats(filename, label, regex)
     calc_gflops_per_sec(stats)
     calc_flops_per_byte(stats)
     calc_gb_per_sec(stats)
@@ -71,7 +71,7 @@ def roofline(filename):
     fig = ax.scatter(x, y)
     ax.set_ylabel("Performance (GFLOPs/second)")
     ax.set_xlabel("Arithmetic Intensity (FLOPs/byte)")
-    ax.set_title("DNN Models on TITAN V")
+    ax.set_title("My Custom CUDA Kernel")
     for i, l in enumerate(labels):
         ax.annotate(l, (x[i], y[i] - 500))
     
@@ -114,15 +114,9 @@ if __name__ == '__main__':
         assert(len(sys.argv) >= 4)
         speedup(sys.argv[2], sys.argv[3])
     else:
+        option = 1
         regex = "(measure\_max\_flops)\/(.*)\-\-final_kernel,(.*)"
-        option = 0
-        stats = read_stats(sys.argv[2], option, regex)
-        calc_gflops_per_sec(stats)
-        calc_flops_per_byte(stats)
-        calc_gb_per_sec(stats)
-        
-        # print stats
-        print(stats)
+        roofline(sys.argv[2], option, regex)
     
 
     

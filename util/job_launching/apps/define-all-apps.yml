@@ -43,10 +43,12 @@ my_apps:
   exec_dir: "/home/yang/Desktop/accel-sim-framework/myapps"
   data_dirs: "/home/yang/Desktop/accel-sim-framework/myapps"
   execs: 
-    - vector_add:
-      - args: "data_dirs"
     - measure_max_flops:
-      - args: "data_dirs"
+      - args: "1024 768"
+    - measure_max_flops:
+      - args: "102 768"
+    - measure_max_flops:
+      - args: "1024 76"
 
 cifar-10:
   exec_dir: "/home/yang/Desktop/cifar-10"
