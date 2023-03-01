@@ -9,18 +9,18 @@
             "request": "launch",
             "name": "Launch",
             "program": "${workspaceFolder}/gpu-simulator/bin/debug/accel-sim.out",
-            "stopOnEntry": true,
+            "stopOnEntry": false,
             "console": "internalConsole",
             "env": {
                 "LD_LIBRARY_PATH": "${workspaceFolder}/gpu-simulator/gpgpu-sim/lib/gcc-/cuda-11030/debug:${workspaceFolder}/gpu-simulator/gpgpu-sim/lib/gcc-/cuda-11030/release:"
             },
             "args": [
                 "-trace",
-                "./hw_run/traces/device-0/11.3/measure_max_flops/1024_76/traces/kernelslist.g",
+                "${workspaceFolder}/hw_run/traces/device-0/11.3/measure_max_flops/1024_76/traces/kernelslist.g",
                 "-config", 
-                "./gpu-simulator/gpgpu-sim/configs/tested-cfgs/SM7_TITANV/gpgpusim.config",
+                "${workspaceFolder}/gpu-simulator/gpgpu-sim/configs/tested-cfgs/SM7_TITANV/gpgpusim.config",
                 "-config",
-                "./gpu-simulator/configs/tested-cfgs/SM7_TITANV/trace.config"
+                "${workspaceFolder}/gpu-simulator/configs/tested-cfgs/SM7_TITANV/trace.config"
             ],
             "cwd": "${workspaceFolder}/build"
         },
