@@ -12,4 +12,4 @@ traces
 blah.log
 gpgpu_inst_stats.txt
 run.sh
-.vscode
+build

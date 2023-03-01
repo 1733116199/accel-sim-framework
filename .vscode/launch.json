@@ -1,0 +1,43 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Launch",
+            "program": "${workspaceFolder}/gpu-simulator/bin/debug/accel-sim.out",
+            "stopOnEntry": true,
+            "console": "internalConsole",
+            "env": {
+                "LD_LIBRARY_PATH": "${workspaceFolder}/gpu-simulator/gpgpu-sim/lib/gcc-/cuda-11030/debug:${workspaceFolder}/gpu-simulator/gpgpu-sim/lib/gcc-/cuda-11030/release:"
+            },
+            "args": [
+                "-trace",
+                "./hw_run/traces/device-0/11.3/measure_max_flops/1024_76/traces/kernelslist.g",
+                "-config", 
+                "./gpu-simulator/gpgpu-sim/configs/tested-cfgs/SM7_TITANV/gpgpusim.config",
+                "-config",
+                "./gpu-simulator/configs/tested-cfgs/SM7_TITANV/trace.config"
+            ],
+            "cwd": "${workspaceFolder}/build"
+        },
+        {
+            "name": "Python: AerialVision",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/gpu-simulator/gpgpu-sim/bin/aerialvision.py",
+            "console": "integratedTerminal",
+            "python": "/home/yang/opt/python-2.7.15/bin/python2",
+            "args": [
+                "${workspaceFolder}/sim_run_11.3/measure_max_flops/1024_768/TITANV/gpgpusim_visualizer__Thu-Feb-23-15-30-48-2023.log.gz"
+            ],
+            "env": {
+                "HOME": "/home/yang",
+                "GPGPUSIM_ROOT": "${workspaceFolder}/gpu-simulator/gpgpu-sim"
+            }
+        }
+    ]
+}
